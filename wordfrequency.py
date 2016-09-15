@@ -12,18 +12,21 @@ since, so, some, than, that, the, their, them, then, there, these, they, this, t
 twas, us, wants, was, we, were, what, when, where, which, while, who, whom, why, will, with,
 would, yet, you, your"""
     exclude = exclude.replace("\n", "")
-    exclude = exclude.replace(",", "")
-    exclude = exclude.split(" ")
+    exclude = exclude.replace(" ", "")
+    exclude = exclude.split(",")
     for item in punctuation:
         text = text.replace(item, "")
     text = text.replace("\n", " ")
-    for excluded_words in exclude:
-        while excluded_words in text:
-            text.replace(excluded_words, "")
-    words_list = text.split(" ")
 
-    word_count = {}
+    words_list = text.split(" ")
+    good_words = []
     for words in words_list:
+        if words in exclude:
+            good_words == 0
+        else:
+            good_words.append(words)
+    word_count = {}
+    for words in good_words:
         if words in word_count.keys():
             word_count[words] += 1
         else:
